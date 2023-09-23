@@ -12,8 +12,13 @@ List of itemsl {public address of seller, image, duration, and money spent, butt
 
 import React from 'react';
 import Order from '../components/Order'; // Assuming the Order component is in the same directory
+import { useAccount } from 'wagmi'
+import WalletNotConnected from '../components/WalletNotConnected'
+
 
 const Dashboard = () => {
+  const { address, isConnecting, isDisconnected } = useAccount()
+  if (isDisconnected || isConnecting) return (<div><WalletNotConnected/></div>)
 
   // Sample data
   const itemsBeingSold = [
@@ -21,7 +26,7 @@ const Dashboard = () => {
       name: "OpenAI API",
       duration: "2 hours",
       cost: "100 ETH",
-      publicAddress: "0xAbC1234567890DeFgHiJK",
+      publicAddress: "0x6e6D45D28eF482CC32aF178FeFD4a9eCD55b0eEc",
       costPerHour: "50 ETH",
       isSeller: true,
       image: "https://path-to-seller-image1.jpg"
