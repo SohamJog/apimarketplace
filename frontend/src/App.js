@@ -5,6 +5,7 @@ import { Route, Routes, BrowserRouter, Router} from 'react-router-dom'
 import Navbar from "./components/Navbar";
 import Buy from "./pages/Buy";
 import Sell from "./pages/Sell";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/buy" element={<Buy />} />
           <Route path="/sell" element={<Sell />} />
+          <Route path = "/dashboard" element={<Dashboard/>}/>
         </Routes>
       </div>
       </BrowserRouter>
