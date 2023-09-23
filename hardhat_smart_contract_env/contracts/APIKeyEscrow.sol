@@ -32,10 +32,13 @@ contract APIKeyEscrow {
         uint256 duration
     );
 
+    //adding price and duration makes it easier for the frontend to query data
     event BuyOrderEvent(
         uint256 orderNumber,
         address buyer,
-        uint256 startTime
+        uint256 startTime,
+        uint256 price,
+        uint256 duration
     );
 
     event CancelOrderEvent(
@@ -92,7 +95,9 @@ contract APIKeyEscrow {
         emit BuyOrderEvent(
             _orderNumber,
             msg.sender,
-            startTime
+            startTime,
+            orderMap[_orderNumber].price,
+            orderMap[_orderNumber].duration
         );
 
     }
