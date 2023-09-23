@@ -5,7 +5,7 @@ import { Web3Button, Web3Modal } from '@web3modal/react'
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { arbitrum, mainnet, polygon } from 'wagmi/chains'
 import Landing from "./pages/Landing";
-import { Route, Routes, BrowserRouter} from 'react-router-dom'
+// import { Route, Routes, BrowserRouter} from 'react-router-dom'
 
 const chains = [arbitrum, mainnet, polygon] // -----CHANGE-----
 const projectId = '02d2c608e74734322e276800f3e43483'
@@ -40,7 +40,7 @@ function App() {
             <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
             <h2 className="text-6xl font-semibold mb-4">Welcome to Ethny</h2>
             <p className="text-xl">Redefining the modern web experience.</p>
-
+            
           </div>
         </header>
       </div>
