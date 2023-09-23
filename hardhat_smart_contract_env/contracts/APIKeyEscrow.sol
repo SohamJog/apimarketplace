@@ -127,8 +127,8 @@ contract APIKeyEscrow {
             ethToBuyer = orderMap[_orderNumber].price;
             ethToSeller = 0;
         } else  {
-            uint256 durationUsed = uint256 (block.timestamp)-orderMap[_orderNumber].startTime;
-            if (uint256(durationUsed) > orderMap[_orderNumber].duration) { //scenario if seller cancels order after period/order has ended
+            uint256 durationUsed = block.timestamp - orderMap[_orderNumber].startTime;
+            if (durationUsed > orderMap[_orderNumber].duration) { //scenario if seller cancels order after period/order has ended
                 percentageSellerTime = 1;
                 ethToSeller = orderMap[_orderNumber].price;
                 ethToBuyer = 0;
