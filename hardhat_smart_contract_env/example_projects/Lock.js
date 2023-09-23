@@ -81,7 +81,7 @@ describe("Lock", function () {
           "You aren't the owner"
         );
       });
-
+      
       it("Shouldn't fail if the unlockTime has arrived and the owner calls it", async function () {
         const { lock, unlockTime } = await loadFixture(
           deployOneYearLockFixture
