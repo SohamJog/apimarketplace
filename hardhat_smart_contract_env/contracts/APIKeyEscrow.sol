@@ -1,6 +1,6 @@
 pragma solidity ^0.8.0;
 
-//testing still needed for all functions!!!!!
+//testing still needed for all functions and events!!!!!
 
 contract APIKeyEscrow {
 
@@ -24,6 +24,13 @@ contract APIKeyEscrow {
     //list of orders belonging to the address, whether they bought or sold
     mapping(address => uint[]) public listOfOrders; 
     mapping(uint => Order) public orderMap;
+
+    event SellOrderEvent(
+        uint256 orderNumber,
+        address seller,
+        uint256 price,
+        uint256 duration
+    );
 
     event BuyOrderEvent(
         uint256 orderNumber,
@@ -55,8 +62,18 @@ contract APIKeyEscrow {
             listOfOrders[msg.sender] = new uint256[](0);
         } 
         listOfOrders[msg.sender].push(orderNumber);
-
        
+        
+
+        emit SellOrderEvent(
+            orderNumber,
+            msg.sender,
+            price,
+            duration
+        );
+
+        //if this were to overflow, it should fail and revert the entire smart contract
+        //which is why its probably safe to emit the Event before then to save gas
         orderNumber += 1;
     }
 
