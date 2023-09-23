@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Order = ({ name, duration, cost, publicAddress, costPerHour, isSeller, image }) => {
+const Order = ({ name, duration, cost, publicAddress, costPerHour, isSeller, image, isUpForSale }) => {
   return (
     <div className="border p-4 rounded-lg shadow-md bg-gradient-to-r from-blue-200 to-blue-300">
       <div className="flex justify-between items-center mb-4">
@@ -14,9 +14,11 @@ const Order = ({ name, duration, cost, publicAddress, costPerHour, isSeller, ima
         </button>
       </div>
       <div className="flex justify-between items-start text-blue-800">
+        
         <div>
           <p><span className="font-bold">Duration:</span> {duration}</p>
-          <p><span className="font-bold">Cost:</span> {isSeller ? `${cost} collected` : `${cost} spent`}</p>
+          {!isUpForSale && <p><span className="font-bold">Cost:</span> {isSeller ? `${cost} collected` : `${cost} spent`}</p>}
+          
         </div>
         <div className="text-right">
           <p className="font-bold">{costPerHour} cost/hour</p>
