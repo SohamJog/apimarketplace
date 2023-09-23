@@ -139,8 +139,8 @@ contract APIKeyEscrow {
                 //we have to do everything in one line 
                 //https://docs.soliditylang.org/en/develop/types.html#rational-and-integer-literals
                 // "Division on integer literals used to truncate in Solidity prior to version 0.4.0, but it now converts into a rational number, i.e. 5 / 2 is not equal to 2, but to 2.5."
-                ethToSeller = orderMap[_orderNumber].price * (uint256(durationUsed) / (orderMap[_orderNumber].duration));
-                ethToBuyer = orderMap[_orderNumber].price * (1 - (uint256(durationUsed) / (orderMap[_orderNumber].duration)));
+                ethToSeller = orderMap[_orderNumber].price * (durationUsed / (orderMap[_orderNumber].duration));
+                ethToBuyer = orderMap[_orderNumber].price * (1 - (durationUsed / (orderMap[_orderNumber].duration)));
 
                 //New method (instead of ufixed)
                 //all decimals produced by the above equations should be truncated, so no worry about the problem below...
