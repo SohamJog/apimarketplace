@@ -52,19 +52,16 @@ contract APIKeyEscrow {
         require(price != 0);
         require(duration != 0);
 
-        orderMap[orderNumber].buyer = address(0);
         orderMap[orderNumber].seller = msg.sender;
         orderMap[orderNumber].price = price;
         orderMap[orderNumber].duration = duration;
-        orderMap[orderNumber].startTime = 0;
-
+        
         if (listOfOrders[msg.sender].length == 0) {
             listOfOrders[msg.sender] = new uint256[](0);
         } 
         listOfOrders[msg.sender].push(orderNumber);
        
         
-
         emit SellOrderEvent(
             orderNumber,
             msg.sender,
