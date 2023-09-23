@@ -1,8 +1,9 @@
 import React from 'react'
+import SellComponent from '../components/SellComponent'
 
 function Sell() {
   return (
-    <div>Sell</div>
+    <SellComponent />
   )
 }
 
