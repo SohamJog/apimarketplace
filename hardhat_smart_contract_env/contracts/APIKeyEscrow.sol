@@ -72,7 +72,7 @@ contract APIKeyEscrow {
     
     //works for if seller withdraws order, before or after duration ends or begins
     //works for if buyer withdraws order, before or after duration ends or begins
-    function withdrawOrder(uint _orderNumber) external payable {
+    function cancelOrder(uint _orderNumber) external payable {
         
         //this should create a storage pointer, which, to my knowledge, is cheaper
         //than storing the struct in memory
