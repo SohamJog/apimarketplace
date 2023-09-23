@@ -15,12 +15,22 @@ const wagmiConfig = createConfig({
   publicClient
 })
 const ethereumClient = new EthereumClient(wagmiConfig, chains)
+const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 
 function App() {
   return (
     <>
       
-
+      <div>
+        {/* Display the fetched image */}
+        
+          <img
+            src={apiUrl}
+            alt="Profile Picture"
+            className="rounded-full w-20 h-20"
+          />
+        
+      </div>
       <div className="bg-gradient-to-r from-gray-900 to-black h-screen text-white">
         <nav className="p-5 bg-transparent">
           <div className="container mx-auto">
