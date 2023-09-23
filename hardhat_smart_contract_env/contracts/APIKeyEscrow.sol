@@ -14,7 +14,7 @@ contract APIKeyEscrow {
 		address seller;
 		uint256 price;
 		uint256 duration; //difference between start time and end time in seconds
-		uint256 buyTime;  //timestamp
+		uint256 startTime;  //timestamp
     }
 
     //user gets an array of their orders, represented by hashes
@@ -49,7 +49,7 @@ contract APIKeyEscrow {
         orderMap[orderNumber].seller = msg.sender;
         orderMap[orderNumber].price = price;
         orderMap[orderNumber].duration = duration;
-        orderMap[orderNumber].buyTime = 0;
+        orderMap[orderNumber].startTime = 0;
 
         if (listOfOrders[msg.sender].length == 0) {
             listOfOrders[msg.sender] = new uint256[](0);
@@ -70,7 +70,7 @@ contract APIKeyEscrow {
         require(msg.value == orderMap[_orderNumber].price, "Eth sent is the incorrect amount");
         orderMap[_orderNumber].buyer = msg.sender;
         uint256 startTime = block.timestamp + 1 hours;
-        orderMap[_orderNumber].buyTime = startTime;
+        orderMap[_orderNumber].startTime = startTime;
         //we add one hour so that buyer has 1 hour to wait to receive the api key
         //if the buyer does not receive the api key, they can withdraw the order
         //and get all of their money back, minus the transaction fees
@@ -103,12 +103,12 @@ contract APIKeyEscrow {
         uint256 percentageSellerTime;
         uint256 ethToSeller;
         uint256 ethToBuyer;
-        if (block.timestamp < orderMap[_orderNumber].buyTime) { // scenario if buyer withdraws before order starts because they haven't received an API key
+        if (block.timestamp < orderMap[_orderNumber].startTime) { // scenario if buyer withdraws before order starts because they haven't received an API key
             percentageSellerTime = 0;
             ethToBuyer = orderMap[_orderNumber].price;
             ethToSeller = 0;
         } else  {
-            uint256 durationUsed = uint256 (block.timestamp)-orderMap[_orderNumber].buyTime;
+            uint256 durationUsed = uint256 (block.timestamp)-orderMap[_orderNumber].startTime;
             if (uint256(durationUsed) > orderMap[_orderNumber].duration) { //scenario if seller cancels order after period/order has ended
                 percentageSellerTime = 1;
                 ethToSeller = orderMap[_orderNumber].price;
