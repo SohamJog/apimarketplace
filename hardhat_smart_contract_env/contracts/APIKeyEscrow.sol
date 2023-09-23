@@ -1,6 +1,6 @@
 pragma solidity ^0.8.0;
 
-//testing still needed for all functions!!!!!
+//testing still needed for all functions and events!!!!!
 
 contract APIKeyEscrow {
 
@@ -14,7 +14,7 @@ contract APIKeyEscrow {
 		address seller;
 		uint256 price;
 		uint256 duration; //difference between start time and end time in seconds
-		uint256 buyTime;  //timestamp
+		uint256 startTime;  //timestamp
     }
 
     //user gets an array of their orders, represented by hashes
@@ -25,7 +25,21 @@ contract APIKeyEscrow {
     mapping(address => uint[]) public listOfOrders; 
     mapping(uint => Order) public orderMap;
 
-    event WithdrawOrderEvent(
+    event SellOrderEvent(
+        uint256 orderNumber,
+        address seller,
+        uint256 price,
+        uint256 duration
+    );
+
+    event BuyOrderEvent(
+        uint256 orderNumber,
+        address buyer,
+        uint256 startTime
+    );
+
+    event CancelOrderEvent(
+        uint256 orderNumber,
         address withdrawer, 
         uint256 ethToBuyer, 
         uint256 ethToSeller, 
@@ -38,18 +52,25 @@ contract APIKeyEscrow {
         require(price != 0);
         require(duration != 0);
 
-        orderMap[orderNumber].buyer = address(0);
         orderMap[orderNumber].seller = msg.sender;
         orderMap[orderNumber].price = price;
         orderMap[orderNumber].duration = duration;
-        orderMap[orderNumber].buyTime = 0;
-
+        
         if (listOfOrders[msg.sender].length == 0) {
             listOfOrders[msg.sender] = new uint256[](0);
         } 
         listOfOrders[msg.sender].push(orderNumber);
-
        
+        
+        emit SellOrderEvent(
+            orderNumber,
+            msg.sender,
+            price,
+            duration
+        );
+
+        //if this were to overflow, it should fail and revert the entire smart contract
+        //which is why its probably safe to emit the Event before then to save gas
         orderNumber += 1;
     }
 
@@ -62,10 +83,17 @@ contract APIKeyEscrow {
         require(orderMap[_orderNumber].buyer == address(0), "Order already bought.");
         require(msg.value == orderMap[_orderNumber].price, "Eth sent is the incorrect amount");
         orderMap[_orderNumber].buyer = msg.sender;
-        orderMap[_orderNumber].buyTime = block.timestamp + 1 hours;
+        uint256 startTime = block.timestamp + 1 hours;
+        orderMap[_orderNumber].startTime = startTime;
         //we add one hour so that buyer has 1 hour to wait to receive the api key
         //if the buyer does not receive the api key, they can withdraw the order
         //and get all of their money back, minus the transaction fees
+
+        emit BuyOrderEvent(
+            _orderNumber,
+            msg.sender,
+            startTime
+        );
 
     }
 
@@ -89,12 +117,12 @@ contract APIKeyEscrow {
         uint256 percentageSellerTime;
         uint256 ethToSeller;
         uint256 ethToBuyer;
-        if (block.timestamp < orderMap[_orderNumber].buyTime) { // scenario if buyer withdraws before order starts because they haven't received an API key
+        if (block.timestamp < orderMap[_orderNumber].startTime) { // scenario if buyer withdraws before order starts because they haven't received an API key
             percentageSellerTime = 0;
             ethToBuyer = orderMap[_orderNumber].price;
             ethToSeller = 0;
         } else  {
-            uint256 durationUsed = uint256 (block.timestamp)-orderMap[_orderNumber].buyTime;
+            uint256 durationUsed = uint256 (block.timestamp)-orderMap[_orderNumber].startTime;
             if (uint256(durationUsed) > orderMap[_orderNumber].duration) { //scenario if seller cancels order after period/order has ended
                 percentageSellerTime = 1;
                 ethToSeller = orderMap[_orderNumber].price;
@@ -141,7 +169,8 @@ contract APIKeyEscrow {
         orderMap[_orderNumber].price = 0;
         //or, we delete the whole order data altogether...
 
-        emit WithdrawOrderEvent(
+        emit CancelOrderEvent(
+            _orderNumber,
             msg.sender,
             ethToBuyer,
             ethToSeller,
