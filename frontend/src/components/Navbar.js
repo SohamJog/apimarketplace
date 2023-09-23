@@ -21,7 +21,7 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
   return (
     <>
       
-      <div className="bg-gray-900 p-4 flex justify-between items-center">
+      <div className="p-4 flex justify-between items-center">
       {/* Left Side */}
       <ul className="flex space-x-4 list-none">
         <li>
