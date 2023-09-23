@@ -9,9 +9,9 @@ const Order = ({ name, duration, cost, publicAddress, costPerHour, isSeller, ima
           <p className="font-bold">{name}</p>  {/* Display the name in bold */}
           <p><span className="font-bold">Public Address:</span> {publicAddress.slice(0, 6)}...{publicAddress.slice(-4)}</p>
         </div>
-        <button className="bg-red-400 text-white py-2 px-4 rounded">
+        {!isUpForSale && <button className="bg-red-400 text-white py-2 px-4 rounded">
           CANCEL Transaction
-        </button>
+        </button>}
       </div>
       <div className="flex justify-between items-start text-blue-800">
         
