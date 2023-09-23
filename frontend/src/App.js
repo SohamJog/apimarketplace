@@ -1,5 +1,7 @@
 import React from "react";
 import './index.css';
+//import order from components
+import Order from "./components/Order";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <p className="text-xl">Redefining the modern web experience.</p>
         </div>
       </header>
+      <Order duration="3 hours" cost="$100" publicAddress="0x1234567890abcdef12345678" costPerHour="$33.33" />
+
     </div>
   );
 }
