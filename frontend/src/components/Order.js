@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Order = ({ duration, cost, publicAddress, costPerHour }) => {
+const Order = ({ duration, cost, publicAddress, costPerHour, isSeller }) => {
   return (
     <div className="border p-4 rounded-lg shadow-md bg-black">
       <div className="flex justify-between items-center mb-4">
