@@ -11,13 +11,12 @@ import WalletNotConnected from "./WalletNotConnected";
 
 
 
-export default function Home() {
+export default function Home({PEER_ADDRESS}) {
 
   const { data, isLoading } = useEthersWalletClient();
 
-  //const PEER_ADDRESS = "0x937C0d4a6294cdfa575de17382c7076b579DC176";
-  const PEER_ADDRESS = 
-  "0x6e6D45D28eF482CC32aF178FeFD4a9eCD55b0eEc"
+  //const PEER_ADDRESS = "0x6ea5CB879208496D27aCfc6319eCD3Dad31fd717";
+  //const PEER_ADDRESS = "0x6e6D45D28eF482CC32aF178FeFD4a9eCD55b0eEc"
   const [messages, setMessages] = useState(null);
   const convRef = useRef(null);
   const clientRef = useRef(null);
@@ -96,18 +95,23 @@ export default function Home() {
       {isConnected && !isOnNetwork && (
         <div >
           {/* <DynamicWidget /> */}
-          <button onClick={initXmtp} >
-            Connect to XMTP
-          </button>
+          <button 
+            onClick={initXmtp}
+            className="bg-gray-800 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50"
+        >
+            Connect to XMTP to Chat!
+        </button>
         </div>
       )}
       {/* Render the Chat component if connected, initialized, and messages exist */}
       {isConnected && isOnNetwork && messages && (
+        <div className="text-black">
         <Chat
           client={clientRef.current}
           conversation={convRef.current}
           messageHistory={messages}
         />
+        </div>
       )}
     </div>
   );

@@ -53,7 +53,10 @@ function App() {
           }/>
 
 
-          <Route path = "/dashboard" element={<Dashboard/>}/>
+          <Route path = "/dashboard" element={             
+          <WagmiConfig config={wagmiConfig}>
+            <Dashboard/>
+          </WagmiConfig>}/>
 
 
 
