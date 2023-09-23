@@ -25,6 +25,12 @@ contract APIKeyEscrow {
     mapping(address => uint[]) public listOfOrders; 
     mapping(uint => Order) public orderMap;
 
+    event WithdrawOrderEvent(
+        address withdrawer, 
+        uint256 ethToBuyer, 
+        uint256 ethToSeller, 
+        uint256 withdrawTime
+    );
 
     constructor() {}
 
@@ -66,7 +72,7 @@ contract APIKeyEscrow {
     
     //works for if seller withdraws order, before or after duration ends or begins
     //works for if buyer withdraws order, before or after duration ends or begins
-    function withdrawSoldOrder(uint _orderNumber) external payable {
+    function withdrawOrder(uint _orderNumber) external payable {
         
         //this should create a storage pointer, which, to my knowledge, is cheaper
         //than storing the struct in memory
@@ -134,6 +140,13 @@ contract APIKeyEscrow {
 
         orderMap[_orderNumber].price = 0;
         //or, we delete the whole order data altogether...
+
+        emit WithdrawOrderEvent(
+            msg.sender,
+            ethToBuyer,
+            ethToSeller,
+            block.timestamp
+        );
 
     }
 
