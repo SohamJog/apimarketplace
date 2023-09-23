@@ -5,6 +5,7 @@ import { Web3Button, Web3Modal } from '@web3modal/react'
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { arbitrum, mainnet, polygon } from 'wagmi/chains'
 import Landing from "./pages/Landing";
+import Dashboard from "./pages/Dashboard";
 // import { Route, Routes, BrowserRouter} from 'react-router-dom'
 
 const chains = [arbitrum, mainnet, polygon] // -----CHANGE-----
@@ -22,6 +23,9 @@ function App() {
   return (
     <>
       
+
+
+
       <div className="bg-gradient-to-r from-gray-900 to-black h-screen text-white">
         <nav className="p-5 bg-transparent">
           <div className="container mx-auto">
@@ -40,10 +44,12 @@ function App() {
             <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
             <h2 className="text-6xl font-semibold mb-4">Welcome to Ethny</h2>
             <p className="text-xl">Redefining the modern web experience.</p>
-            
+
           </div>
         </header>
+
       </div>
+      <Dashboard/>
 
     </>
   );
