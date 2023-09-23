@@ -12,6 +12,9 @@ const Order = ({ name, duration, cost, publicAddress, costPerHour, isSeller, ima
         {!isUpForSale && <button className="bg-red-400 text-white py-2 px-4 rounded">
           CANCEL Transaction
         </button>}
+        {isUpForSale && <button className="bg-green-400 text-white py-2 px-4 rounded">
+          BUY
+        </button>}
       </div>
       <div className="flex justify-between items-start text-blue-800">
         
