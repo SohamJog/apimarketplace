@@ -1,18 +1,22 @@
 import React from 'react';
 
-const Order = ({ duration, cost, publicAddress, costPerHour }) => {
+const Order = ({ name, duration, cost, publicAddress, costPerHour, isSeller, image }) => {
   return (
-    <div className="border p-4 rounded-lg shadow-md bg-black">
+    <div className="border p-4 rounded-lg shadow-md bg-gradient-to-r from-blue-200 to-blue-300">
       <div className="flex justify-between items-center mb-4">
-        <div className="w-3/4 bg-gray-200 rounded-full">
-          {/* Placeholder for image */}
+        {image && <img src={image} alt="Order item" className="w-1/4 h-24 object-cover" />}
+        <div className="w-1/2 text-blue-800">
+          <p className="font-bold">{name}</p>  {/* Display the name in bold */}
+          <p><span className="font-bold">Public Address:</span> {publicAddress.slice(0, 6)}...{publicAddress.slice(-4)}</p>
         </div>
+        <button className="bg-red-400 text-white py-2 px-4 rounded">
+          CANCEL Transaction
+        </button>
       </div>
-      <div className="flex justify-between items-start">
+      <div className="flex justify-between items-start text-blue-800">
         <div>
           <p><span className="font-bold">Duration:</span> {duration}</p>
-          <p><span className="font-bold">Cost:</span> {cost}</p>
-          <p><span className="font-bold">Public Address:</span> {publicAddress.slice(0, 6)}...{publicAddress.slice(-4)}</p>
+          <p><span className="font-bold">Cost:</span> {isSeller ? `${cost} collected` : `${cost} spent`}</p>
         </div>
         <div className="text-right">
           <p className="font-bold">{costPerHour} cost/hour</p>
