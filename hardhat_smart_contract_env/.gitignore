@@ -4,6 +4,7 @@ coverage
 coverage.json
 typechain
 typechain-types
+example_project/
 
 # Hardhat files
 cache

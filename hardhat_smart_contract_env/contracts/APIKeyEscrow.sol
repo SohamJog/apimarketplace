@@ -32,10 +32,13 @@ contract APIKeyEscrow {
         uint256 duration
     );
 
+    //adding price and duration makes it easier for the frontend to query data
     event BuyOrderEvent(
         uint256 orderNumber,
         address buyer,
-        uint256 startTime
+        uint256 startTime,
+        uint256 price,
+        uint256 duration
     );
 
     event CancelOrderEvent(
@@ -92,7 +95,9 @@ contract APIKeyEscrow {
         emit BuyOrderEvent(
             _orderNumber,
             msg.sender,
-            startTime
+            startTime,
+            orderMap[_orderNumber].price,
+            orderMap[_orderNumber].duration
         );
 
     }
@@ -122,20 +127,19 @@ contract APIKeyEscrow {
             ethToBuyer = orderMap[_orderNumber].price;
             ethToSeller = 0;
         } else  {
-            uint256 durationUsed = uint256 (block.timestamp)-orderMap[_orderNumber].startTime;
-            if (uint256(durationUsed) > orderMap[_orderNumber].duration) { //scenario if seller cancels order after period/order has ended
+            uint256 durationUsed = block.timestamp - orderMap[_orderNumber].startTime;
+            if (durationUsed > orderMap[_orderNumber].duration) { //scenario if seller cancels order after period/order has ended
                 percentageSellerTime = 1;
                 ethToSeller = orderMap[_orderNumber].price;
                 ethToBuyer = 0;
             } else { //scenario if buyer or seller withdraws order before period ended
-
                 
                 //these calculations should preserve decimals until storage/memory, at which point it is truncated
                 //we have to do everything in one line 
                 //https://docs.soliditylang.org/en/develop/types.html#rational-and-integer-literals
                 // "Division on integer literals used to truncate in Solidity prior to version 0.4.0, but it now converts into a rational number, i.e. 5 / 2 is not equal to 2, but to 2.5."
-                ethToSeller = orderMap[_orderNumber].price * (uint256(durationUsed) / (orderMap[_orderNumber].duration));
-                ethToBuyer = orderMap[_orderNumber].price * (1 - (uint256(durationUsed) / (orderMap[_orderNumber].duration)));
+                ethToSeller = orderMap[_orderNumber].price * (durationUsed / (orderMap[_orderNumber].duration));
+                ethToBuyer = orderMap[_orderNumber].price * (1 - (durationUsed / (orderMap[_orderNumber].duration)));
 
                 //New method (instead of ufixed)
                 //all decimals produced by the above equations should be truncated, so no worry about the problem below...
