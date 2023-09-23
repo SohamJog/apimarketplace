@@ -10,6 +10,9 @@ import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Button, Web3Modal } from '@web3modal/react'
 import { arbitrum, mainnet, polygon } from 'wagmi/chains'
+import XmtpHome from "./components/XmtpHome";
+import { DynamicWidget, useDynamicContext, DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum-all";
 
 const chains = [arbitrum, mainnet, polygon] // -----CHANGE-----
 const projectId = '02d2c608e74734322e276800f3e43483' // -----HIDE-----
@@ -36,6 +39,8 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Landing />} />
+
+
           <Route path="/buy" element={<Buy />} />
 
 
@@ -48,6 +53,15 @@ function App() {
 
 
           <Route path = "/dashboard" element={<Dashboard/>}/>
+
+
+
+          <Route path = "/xmtp" element={
+             <WagmiConfig config={wagmiConfig}>
+            
+             <XmtpHome/>
+           </WagmiConfig>
+          }/>
         </Routes>
       </div>
       </BrowserRouter>
