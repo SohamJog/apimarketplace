@@ -26,7 +26,6 @@ const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 function App() {
   return (
     <BrowserRouter>
-    
       <div className="bg-gradient-to-r from-gray-900 to-black h-screen text-white">
         <Navbar
          wagmiConfig={wagmiConfig}
@@ -36,21 +35,25 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/buy" element={<Buy />} />
+          {/* <Route path="/buy" element={<Buy />} /> */}
 
 
           <Route path="/sell" element={
             <WagmiConfig config={wagmiConfig}>
                 <Sell/>
-              </WagmiConfig>
-           
+            </WagmiConfig>
+          }/>
+          <Route path="/buy" element={
+            <WagmiConfig config={wagmiConfig}>
+                <Buy/>
+            </WagmiConfig>
           }/>
 
 
           <Route path = "/dashboard" element={<Dashboard/>}/>
         </Routes>
       </div>
-      </BrowserRouter>
+    </BrowserRouter>
 
   );
 }
