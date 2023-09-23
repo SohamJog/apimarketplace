@@ -25,7 +25,8 @@ contract APIKeyEscrow {
     mapping(address => uint[]) public listOfOrders; 
     mapping(uint => Order) public orderMap;
 
-    event WithdrawOrderEvent(
+    event CancelOrderEvent(
+        uint256 orderNumber,
         address withdrawer, 
         uint256 ethToBuyer, 
         uint256 ethToSeller, 
@@ -141,7 +142,8 @@ contract APIKeyEscrow {
         orderMap[_orderNumber].price = 0;
         //or, we delete the whole order data altogether...
 
-        emit WithdrawOrderEvent(
+        emit CancelOrderEvent(
+            _orderNumber,
             msg.sender,
             ethToBuyer,
             ethToSeller,
