@@ -64,7 +64,7 @@ const Graph = () => {
     console.log(graphData)
     console.log(graphData.data.buyOrderEvents)
 
-  // Sample data
+  //Sample data
   const itemsBeingSold = [
     {
       name: "OpenAI API",
