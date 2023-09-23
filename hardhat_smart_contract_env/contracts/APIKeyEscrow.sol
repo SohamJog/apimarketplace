@@ -25,6 +25,12 @@ contract APIKeyEscrow {
     mapping(address => uint[]) public listOfOrders; 
     mapping(uint => Order) public orderMap;
 
+    event BuyOrderEvent(
+        uint256 orderNumber,
+        address buyer,
+        uint256 startTime
+    );
+
     event CancelOrderEvent(
         uint256 orderNumber,
         address withdrawer, 
@@ -63,10 +69,17 @@ contract APIKeyEscrow {
         require(orderMap[_orderNumber].buyer == address(0), "Order already bought.");
         require(msg.value == orderMap[_orderNumber].price, "Eth sent is the incorrect amount");
         orderMap[_orderNumber].buyer = msg.sender;
-        orderMap[_orderNumber].buyTime = block.timestamp + 1 hours;
+        uint256 startTime = block.timestamp + 1 hours;
+        orderMap[_orderNumber].buyTime = startTime;
         //we add one hour so that buyer has 1 hour to wait to receive the api key
         //if the buyer does not receive the api key, they can withdraw the order
         //and get all of their money back, minus the transaction fees
+
+        emit BuyOrderEvent(
+            _orderNumber,
+            msg.sender,
+            startTime
+        );
 
     }
 
