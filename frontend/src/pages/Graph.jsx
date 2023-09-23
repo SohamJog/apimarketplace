@@ -10,10 +10,59 @@ List of itemsl {public address of seller, image, duration, and money spent, butt
 // Compare this snippet from frontend/src/components/Orders.js:
 
 
+
 import React from 'react';
+import { useState, useEffect } from 'react';
 import Order from '../components/Order'; // Assuming the Order component is in the same directory
 
-const Dashboard = () => {
+import { createClient, cacheExchange, fetchExchange } from 'urql';
+
+const APIURL = 'https://api.studio.thegraph.com/query/53619/nysub/0.21.0'
+
+const tokensQuery = `
+    {
+      buyOrderEvents(first: 5) {
+        id
+        orderNumber
+        buyer
+        startTime
+      }
+      cancelOrderEvents(first: 5) {
+        id
+        orderNumber
+        withdrawer
+        ethToBuyer
+        withdrawTime
+      }
+    }
+`
+
+
+
+
+const Graph = () => {
+
+    var client = client = createClient({
+      url: APIURL,
+      exchanges: [cacheExchange, fetchExchange],
+    })
+
+    const [graphData, setGraphData] = useState('');
+
+    const handleGraph = async(e) => {
+        
+        const data = await client.query(tokensQuery).toPromise()
+        console.log(data)
+        setGraphData(data)
+    }
+
+    if(graphData == "") {
+      handleGraph();
+    }
+
+    console.log("--------------------")
+    console.log(graphData)
+    console.log(graphData.data.buyOrderEvents)
 
   // Sample data
   const itemsBeingSold = [
@@ -94,4 +143,4 @@ const Dashboard = () => {
   );
 }
 
-export default Dashboard;
+export default Graph;

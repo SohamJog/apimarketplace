@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Buy from "./pages/Buy";
 import Sell from "./pages/Sell";
 import Dashboard from "./pages/Dashboard";
+import Graph from "./pages/Graph";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/buy" element={<Buy />} />
           <Route path="/sell" element={<Sell />} />
           <Route path = "/dashboard" element={<Dashboard/>}/>
+          <Route path = "/graph" element={<Graph/>}/>
         </Routes>
       </div>
       </BrowserRouter>
