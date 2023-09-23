@@ -133,7 +133,6 @@ contract APIKeyEscrow {
                 ethToSeller = orderMap[_orderNumber].price;
                 ethToBuyer = 0;
             } else { //scenario if buyer or seller withdraws order before period ended
-
                 
                 //these calculations should preserve decimals until storage/memory, at which point it is truncated
                 //we have to do everything in one line 
