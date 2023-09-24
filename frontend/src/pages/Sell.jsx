@@ -18,8 +18,14 @@ function Sell() {
 
 
   return (
+    <>
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="text-5xl font-bold mt-24 mb-16">Help Decentralize the internet</h1>
+        <p className="text-center">Sell your API accesss here. You don't have to share your API keys with us, just send your API key securely through XMTP once the transaction is finalized!</p>
+    </div>
 
-    <SellComponent />
+      <SellComponent />
+    </>
   )
 }
 

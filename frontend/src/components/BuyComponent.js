@@ -40,7 +40,7 @@ function BuyComponent({numberOfOrders}) {
         duration: Number(data[i].result.duration),
         cost: Number(data[i].result.price),
         publicAddress: data[i].result.seller,
-        costPerHour: Number(data[i].result.price)/(Number(data[i].result.duration) * 24),
+        costPerHour: Number(data[i].result.price)/(Number(data[i].result.duration) ),
         isSeller: 0,
         image: 'https://api.cloudnouns.com/v1/pfp',
         isUpForSale: true,
