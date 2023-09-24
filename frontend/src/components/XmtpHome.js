@@ -97,7 +97,7 @@ export default function Home({PEER_ADDRESS}) {
           {/* <DynamicWidget /> */}
           <button 
             onClick={initXmtp}
-            className="bg-gray-800 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50"
+            className="bg-gray-800 text-black px-6 py-2 rounded-full shadow-md hover:bg-gray-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50"
         >
             Connect to XMTP to Chat!
         </button>
