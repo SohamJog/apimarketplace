@@ -47,7 +47,7 @@ function SellComponent() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(data.toString())
+    //console.log(data.toString())
     write({args: [price, duration]})
 
    
