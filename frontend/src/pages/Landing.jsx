@@ -66,23 +66,26 @@ function Landing() {
         </div>
       </div>
 
-      <div className="container mx-auto p-1">
+      {/* <div className="container mx-auto p-1">
         <div className="grid grid-cols-2 gap-8">
-          {/* Left column with a negative top margin to push it up */}
+
           <div className="col-span-1 -mt-20">
             <Description />
           </div>
 
-          {/* Right column with flip effect
+          Right column with flip effect
     <div className="col-span-1 relative transform scale-x-[-1]">
       <Description />
-    </div> */}
-  </div>
+    </div>
+    */}
+    
+
+
 
         <div className="mt-60">
           <Sponsors />
         </div>
-      </div>
+
 
 
     </>
