@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.font-face {
+    font-family: 'Public Pixel', sans-serif;
+    src: url('https://fonts.cdnfonts.com/css/public-pixel'); /* Adjust the path and format accordingly */
+  }
+/* index.css */
+
+/* Set the background image */
+body {
+    background-image: url('C:\Users\ibrah\Downloads\EthGlobal\apimarketplace\frontend\tilesetOpenGameBackground.png'); /* Adjust the path to your image */
+    background-size: cover; /* Adjust the background size as needed */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+    
+  
+
+  

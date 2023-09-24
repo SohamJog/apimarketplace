@@ -1,38 +1,46 @@
 import React from "react";
 import './index.css';
 import Landing from "./pages/Landing";
-import { Route, Routes, BrowserRouter, Router} from 'react-router-dom'
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Buy from "./pages/Buy";
 import Sell from "./pages/Sell";
 import Dashboard from "./pages/Dashboard";
-import { configureChains, createConfig, WagmiConfig } from 'wagmi'
-import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
+import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
 import { Web3Button, Web3Modal } from '@web3modal/react'
-import { scrollSepolia} from 'wagmi/chains'
+import { scrollSepolia } from 'wagmi/chains'
 import XmtpHome from "./components/XmtpHome";
 import { DynamicWidget, useDynamicContext, DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum-all";
 import 'react-toastify/dist/ReactToastify.css';
 
+const chains = [scrollSepolia]; // -----CHANGE-----
+const projectId = '02d2c608e74734322e276800f3e43483'; // -----HIDE-----
 
-const chains = [scrollSepolia] // -----CHANGE-----
-const projectId = '02d2c608e74734322e276800f3e43483' // -----HIDE-----
-
-const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
+const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: w3mConnectors({ projectId, chains }),
   publicClient
-})
-const ethereumClient = new EthereumClient(wagmiConfig, chains)
+});
+const ethereumClient = new EthereumClient(wagmiConfig, chains);
 const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-gradient-to-r from-gray-900 to-black min-h-screen text-white">
-        <Navbar
+      {/* Create a container div with background image */}
+      <div
+        className="bg-gradient-to-r from-gray-900 to-black min-h-screen text-black"
+        style={{
+          backgroundImage: `url(${process.env.PUBLIC_URL}/tilesetOpenGameBackground.png)`, // Use the public URL
+          backgroundSize: 'cover', // Adjust the background size as needed
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+         <Navbar
          wagmiConfig={wagmiConfig}
           ethereumClient={ethereumClient}
           projectId={projectId}
@@ -57,7 +65,9 @@ function App() {
 
           <Route path = "/dashboard" element={             
           <WagmiConfig config={wagmiConfig}>
-            <Dashboard/>
+            <Dashboard
+            
+            />
           </WagmiConfig>}/>
 
 

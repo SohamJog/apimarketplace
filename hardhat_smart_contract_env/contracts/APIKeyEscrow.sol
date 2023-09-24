@@ -2,8 +2,6 @@ pragma solidity ^0.8.0;
 
 //testing still needed for all functions and events!!!!!
 
-import "hardhat/console.sol";
-
 contract APIKeyEscrow {
 
     uint public orderNumber = 0; //stores the id/number for the next order
@@ -200,6 +198,7 @@ contract APIKeyEscrow {
     function getOrder(uint _orderNumber) public view returns (Order memory) {
         return orderMap[_orderNumber];
     }
+     
 
     function getAddressOrder(address user) public view returns (uint256[] memory) {
         return listOfOrders[user];
