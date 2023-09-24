@@ -21,7 +21,8 @@ import APIKeyEscrow from '../contracts/APIKeyEscrow.json';
 import { useEffect, useState } from 'react';
 
 const DashboardComponent = ({numberOfOrders}) => {
-  const { address, isConnecting, isDisconnected } = useAccount()
+const { address, isConnecting, isDisconnected } = useAccount()
+const apiUrl = "https://api.cloudnouns.com/v1/pfp";
   
   
   const { data, isError, isLoading } = useContractReads({
@@ -150,7 +151,7 @@ const DashboardComponent = ({numberOfOrders}) => {
           publicAddress={item.publicAddress}
           costPerHour={item.costPerHour}
           isSeller={item.isSeller}
-          image={item.image}
+          image={apiUrl+"?name="+item.publicAddress}
         />
       ))
     )}
@@ -171,7 +172,7 @@ const DashboardComponent = ({numberOfOrders}) => {
           publicAddress={item.publicAddress}
           costPerHour={item.costPerHour}
           isSeller={item.isSeller}
-          image={item.image}
+          image={apiUrl+"?name="+item.publicAddress}
         />
       ))
     )}
