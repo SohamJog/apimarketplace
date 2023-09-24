@@ -60,7 +60,7 @@ function BuyComponent({numberOfOrders}) {
     <div className="flex justify-center items-center min-h-screen">
       {/* Centered and blended-in menu tab */}
       <div className="bg-opacity-70 p-4 w-full h-full" >
-        <h1 className="text-2xl font-bold mb-4">Available APIs</h1>
+        <h1 className="text-2xl font-bold mb-4 text-black">Available APIs</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {apiData.map((item, index) => (
           <Order 
@@ -71,7 +71,7 @@ function BuyComponent({numberOfOrders}) {
             publicAddress={item.publicAddress}
             costPerHour={item.costPerHour}
             isSeller={item.isSeller}
-            image={item.image}
+            image={apiUrl+"?name="+item.publicAddress}
             isUpForSale={true}
           />
           ))}
