@@ -29,7 +29,7 @@ const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-gradient-to-r from-gray-900 to-black h-screen text-white">
+      <div className="bg-gradient-to-r from-gray-900 to-black min-h-screen text-white">
         <Navbar
          wagmiConfig={wagmiConfig}
           ethereumClient={ethereumClient}
