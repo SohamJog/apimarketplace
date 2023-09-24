@@ -31,7 +31,7 @@ function Landing() {
         {/* Right Side: Flickering Image (1/3) */}
         <div className="w-1/3 flex items-center justify-center ml-4">
           <div className="mt-8">
-            <FlickeringImage imageUrl={apiUrl} />
+            {/* <FlickeringImage imageUrl={apiUrl} /> */}
           </div>
         </div>
       </div>
