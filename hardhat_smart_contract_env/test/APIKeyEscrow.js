@@ -7,43 +7,46 @@ const { expect } = require("chai");
 describe("APIKeyEscrow", function() {
 
     async function deployContractFixture() {
-        const [buyer, seller] = await ethers.getSigners();
-
-        console.log(ethers);
+        const [seller, buyer] = await ethers.getSigners();
 
         const APIKeyEscrowFactory = await ethers.getContractFactory("APIKeyEscrow");
-        const api_escrow_contract = await APIKeyEscrowFactory.deploy();
+        const apiEscrowContract = await APIKeyEscrowFactory.deploy();
 
-        return api_escrow_contract, buyer, seller;
+        return {apiEscrowContract, buyer, seller};
     }
 
     async function orderAlreadyBoughtFixture() {
-        const { api_escrow_contract, buyer, seller } = await loadFixture(deployContractFixture);
+        const { apiEscrowContract, seller, buyer } = await loadFixture(deployContractFixture);
 
-        orderNumber = 0 //0 is the first order number when contract is initalized
+        const orderNumber = 0 //0 is the first order number when contract is initalized
 
-        orderPrice = 2
+        const orderPrice = 100
 
-        orderDuration = 100000
+        const orderDuration = 100000
+        
 
-        api_escrow_contract.sellMessage(
+        await apiEscrowContract.sellMessage(
             orderPrice, //price
             orderDuration //duration (in seconds)
         );
 
-        api_escrow_contract.connect(seller).buyMessage(
+        await apiEscrowContract.connect(buyer).buyMessage(
             orderNumber, //order number
-            {value: 1}
+            {value: orderPrice}
         );
 
-        return api_escrow_contract, buyer, seller, orderNumber, orderPrice, orderDuration;
+        return {apiEscrowContract, buyer, seller, orderNumber, orderPrice, orderDuration};
     }
 
     describe("Cancel Order", function() {
-        it("Should splt up funds between buyer and seller depending on time left in period",
-            async function() {
-                const { 
-                    api_escrow_contract, 
+
+        describe("Partial Payouts", function() {
+
+            async function testCancelOrder(percentTimePassed) {
+
+                one_hour = 60*60;
+                const {
+                    apiEscrowContract, 
                     buyer, 
                     seller, 
                     orderNumber,
@@ -51,25 +54,55 @@ describe("APIKeyEscrow", function() {
                     orderDuration
                 } = await loadFixture(orderAlreadyBoughtFixture);
 
-                percent_time_passed = 0.5
+                await time.increase((percentTimePassed*orderDuration) + one_hour);
 
-                //fast forward time
-                one_hour = 60*60;
-                time.increase(percent_time_passed*orderDuration + one_hour);
-                
-                //in this scenario, buyer and seller should each get 50% of the money
-                expected_seller_amount = Math.trunc(percent_time_passed*orderPrice);
-                expected_buyer_amount = Math.trunc((1-percent_time_passed)*orderPrice);
+                //we are using BigInt to avoid floating point errors, which did affect the tests!
+                expectedSellerAmount = //Math.trunc(percentTimePassed*orderPrice)
+                    Number(
+                        (
+                            (
+                                BigInt(percentTimePassed*1000)
+                            )*BigInt(orderPrice)
+                        )/BigInt(1000)
+                    );
+                expectedBuyerAmount = 
+                    Number(
+                        (
+                            (
+                                BigInt(1000) - BigInt(percentTimePassed*1000)
+                            )*BigInt(orderPrice)
+                        )/BigInt(1000)
+                    );
 
-                expect(api_escrow_contract.cancelOrder(orderNumber)).to.changeEtherBalances(
+                await expect(apiEscrowContract.cancelOrder(orderNumber)).to.changeEtherBalances(
                     [buyer, seller],
-                    [expected_buyer_amount, expected_seller_amount]
+                    [expectedBuyerAmount, expectedSellerAmount]
                 );
-
-
-
             }
-        )
+
+            it("Should split up funds depending on time left in period: Seller-Buyer 50-50",
+                async function() {
+                    durationPassedPercentage = 0.5
+                    await expect(await testCancelOrder(durationPassedPercentage))
+                }
+            )
+
+            it("Should split up funds depending on time left in period: Seller-Buyer 80-30",
+                async function() {
+                    durationPassedPercentage = 0.8
+                    await expect(await testCancelOrder(durationPassedPercentage))
+                }
+            )
+
+            it("Should split up funds depending on time left in period, 33-66",
+                async function() {
+                    durationPassedPercentage = 0.33
+                    await expect(await testCancelOrder(durationPassedPercentage))
+                }
+            )
+        })
+
+
     })
 
 
