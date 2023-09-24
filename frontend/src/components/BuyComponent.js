@@ -65,6 +65,7 @@ function BuyComponent({numberOfOrders}) {
         {apiData.map((item, index) => (
           <Order 
             key={index}
+            id = {item.id}
             name = {item.name}
             duration={item.duration}
             cost={item.cost}

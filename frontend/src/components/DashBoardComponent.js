@@ -72,7 +72,7 @@ const apiUrl = "https://api.cloudnouns.com/v1/pfp";
         id: i,
         duration: Number(data[i].result.duration),
         cost: Number(data[i].result.price),
-        publicAddress: data[i].result.seller,
+        publicAddress: data[i].result.buyer,
         costPerHour: Number(data[i].result.price)/(Number(data[i].result.duration) ),
         isSeller: 0,
         image: 'https://api.cloudnouns.com/v1/pfp',
