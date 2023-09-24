@@ -22,18 +22,6 @@ ChartJS.register(
   Legend
 );
 
-const plugin = {
-    id: 'customCanvasBackgroundColor',
-    beforeDraw: (chart, args, options) => {
-      const {ctx} = chart;
-      ctx.save();
-      ctx.globalCompositeOperation = 'destination-over';
-      ctx.fillStyle = options.color || '#99ffff';
-      ctx.fillRect(0, 0, chart.width, chart.height);
-      ctx.restore();
-    }
-  };
-
 const GraphComponent = ({graphData}) => {
     
     const options = {
@@ -47,27 +35,7 @@ const GraphComponent = ({graphData}) => {
             text: '',
             },
         },
-        plugins: {
-            // background: {
-            //   color: 'rgba(0, 0, 0, 0)', // Change this to the desired background color
-            // },
-            customCanvasBackgroundColor: {
-                color: 'lightGreen',
-            }
-        },
     };
-    
-    const config = {
-        options: {
-          plugins: {
-            customCanvasBackgroundColor: {
-              color: 'lightGreen',
-            }
-          }
-        },
-        plugins: [plugin],
-    };
-
     
 
     const labels = ['', '', '', '', '', '', ''];
@@ -86,7 +54,7 @@ const GraphComponent = ({graphData}) => {
     
     return (
         <div>
-            <Line options={options} config={config} data={data} />
+            <Line options={options} data={data} />
         </div>
     );
 }
