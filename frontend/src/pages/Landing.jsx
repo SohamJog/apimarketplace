@@ -21,13 +21,13 @@ function Landing() {
   <span
     style={{
       display: 'inline-block',
-      width: '800px', // Adjust the width as needed
+      width: '1200px', // Adjust the width as needed
       overflow: 'hidden',
     }}
   >
     <Typewriter
       options={{
-        strings: ['Every API in One\nMarketPlace'],
+        strings: ['Enabling Crypto Payments for\n Web2 APIs'],
         autoStart: true,
         loop: true,
       }}
