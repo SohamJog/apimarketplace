@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import FlickeringImage from '../components/FlickeringImage'
 import Sponsors from '../components/Sponsors';
 import Description from '../components/Description';
+import Typewriter from 'typewriter-effect';
 
 const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 
@@ -16,30 +17,46 @@ function Landing() {
         {/* Left Side: Text and Buttons (2/3) */}
         <div className="w-2/3 p-4 flex flex-col items-center justify-center">
           <div className="mb-4">
-            <h2 className="text-5xl text-black font-semibold mb-4" style={pixelFontStyle}>Every API in One<br />MarketPlace</h2>
+          <h2 className="text-5xl text-black font-semibold mb-4">
+  <span
+    style={{
+      display: 'inline-block',
+      width: '800px', // Adjust the width as needed
+      overflow: 'hidden',
+    }}
+  >
+    <Typewriter
+      options={{
+        strings: ['Every API in One\nMarketPlace'],
+        autoStart: true,
+        loop: true,
+      }}
+    />
+  </span>
+</h2>
             <p className="text-md text-black" style={pixelFontStyle}>Redefining the modern API experience.</p>
             <div className="mb-4">
-              <p className="text-md text-black" style={pixelFontStyle}>Enabling crypto payments for Web2 APIs.</p>
+              <p className="text-md text-black" style={pixelFontStyle}> for Web2 APIs.</p>
               <div className="mt-10">
               <a
-  href="/buy"
-  className="inline-block bg-black border border-black text-white text-2xl px-4 py-2 mr-4 rounded-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
-  style={{ ...pixelFontStyle, marginLeft: 'auto' }}
->
-  BUY
-</a>
-<a
-  href="/sell"
-  className="inline-block bg-black border border-black text-white text-2xl px-4 py-2 rounded-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
-  style={{ ...pixelFontStyle }}
->
-  SELL
-</a>
+                href="/buy"
+                className="inline-block bg-black border border-black text-white text-2xl px-4 py-2 mr-4 rounded-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
+                style={{ ...pixelFontStyle, marginLeft: 'auto' }}
+              >
+                BUY
+              </a>
+              <a
+                href="/sell"
+                className="inline-block bg-black border border-black text-white text-2xl px-4 py-2 rounded-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
+                style={{ ...pixelFontStyle }}
+              >
+                SELL
+              </a>
 
-              </div>
-            </div>
-          </div>
-        </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
         {/* Right Side: Flickering Image (1/3) */}
         <div className="w-1/3 flex items-center justify-center ml-4">
