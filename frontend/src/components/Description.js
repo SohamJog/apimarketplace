@@ -13,7 +13,7 @@ function Description() {
             text="Hello, this is a speech bubblex.xxxxx  xxxx  xxxxxxxxxxx"
             imageUrl="/Assets/speechbubble.png" // Replace with your image path
             bubbleStyle={{ width: '400px', height: '300px' }}
-            textStyle={{ fontSize: '16px', color: 'blue' }}
+            textStyle={{ fontSize: '16px', color: 'black' }}
             />
             <Noun />
         </div>
