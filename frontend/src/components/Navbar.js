@@ -27,13 +27,13 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
         {/* Left Side */}
         <ul className="flex space-x-4 list-none">
           <li>
-            <a href="/" className="mb-5 text-white text-xl font-bold hover:text-gray-400 px-4 py-2">SOHO</a>
+            <a href="/" className="mb-5 text-black text-xl font-bold hover:text-gray-400 px-4 py-2">SOHO</a>
           </li>
           <li>
-            <a href="/dashboard" className="text-white hover:text-gray-400 border rounded px-3 py-2" style={pixelFontStyle}>Dashboard</a>
+            <a href="/dashboard" className="text-black hover:text-gray-400 px-3 py-2" style={pixelFontStyle}>Dashboard</a>
           </li>
           <li>
-            <a href="/graph" className="text-white hover:text-gray-400 border rounded px-3 py-2" style={pixelFontStyle}>Analytics</a>
+            <a href="/graph" className="text-black hover:text-gray-400 px-3 py-2" style={pixelFontStyle}>Analytics</a>
           </li> 
         </ul>
 
@@ -48,7 +48,6 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
               <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
             </div>
           </li>
-
           {/* Profile Image */}
           {/* <li>
             <Profile apiUrl={apiUrl} />
@@ -56,7 +55,6 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
         </ul>
       </div>
     </>
-    
   )
 }
 

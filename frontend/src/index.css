@@ -1,18 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.font-face {
+/* .font-face {
     font-family: 'Public Pixel', sans-serif;
     src: url('https://fonts.cdnfonts.com/css/public-pixel'); /* Adjust the path and format accordingly */
-  }
 /* index.css */
+
+@font-face {
+  font-family: 'Public Pixel';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Public Pixel'), url('https://fonts.cdnfonts.com/s/71909/PublicPixel-eZPz6.woff') format('woff');
+}
 
 /* Set the background image */
 body {
-    background-image: url('C:\Users\ibrah\Downloads\EthGlobal\apimarketplace\frontend\tilesetOpenGameBackground.png'); /* Adjust the path to your image */
+    background-image: url('../tilesetOpenGameBackground.png'); /* Adjust the path to your image */
     background-size: cover; /* Adjust the background size as needed */
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: 'Public Pixel', sans-serif;
   }
     
   
