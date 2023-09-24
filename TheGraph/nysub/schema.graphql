@@ -1,0 +1,34 @@
+type BuyOrderEvent @entity(immutable: true) {
+  id: Bytes!
+  orderNumber: BigInt! # uint256
+  buyer: Bytes! # address
+  startTime: BigInt! # uint256
+  price: BigInt! # uint256
+  duration: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CancelOrderEvent @entity(immutable: true) {
+  id: Bytes!
+  orderNumber: BigInt! # uint256
+  withdrawer: Bytes! # address
+  ethToBuyer: BigInt! # uint256
+  ethToSeller: BigInt! # uint256
+  withdrawTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SellOrderEvent @entity(immutable: true) {
+  id: Bytes!
+  orderNumber: BigInt! # uint256
+  seller: Bytes! # address
+  price: BigInt! # uint256
+  duration: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
