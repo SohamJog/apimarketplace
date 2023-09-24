@@ -28,13 +28,13 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
   {/* Left Side */}
   <ul className="flex space-x-4 list-none">
     <li>
-      <a href="/" className="text-white hover:text-gray-400 border rounded px-3 py-2">LOGO</a>
+      <a href="/" className="text-black hover:text-black-400 border rounded px-3 py-2">LOGO</a>
     </li>
     <li>
-      <a href="/buy" className="text-white hover:text-gray-400 border rounded px-3 py-2" style={pixelFontStyle}>Buy</a>
+      <a href="/buy" className="text-black hover:text-black-400 border rounded px-3 py-2" style={pixelFontStyle}>Buy</a>
     </li> 
     <li>
-      <a href="/sell" className="text-white hover:text-gray-400 border rounded px-3 py-2" style={pixelFontStyle}>Sell</a>
+      <a href="/sell" className="text-black hover:text-black-400 border rounded px-3 py-2" style={pixelFontStyle}>Sell</a>
     </li>
   </ul>
 
