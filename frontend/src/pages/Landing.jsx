@@ -15,13 +15,13 @@ function Landing() {
     <>
       <div className="flex h-screen">
         {/* Left Side: Text and Buttons (2/3) */}
-        <div className="w-2/3 p-4 ml-16 flex flex-col items-center justify-center">
+        <div className="w-2/3 p-4 pl-16 ml-16 flex flex-col items-center justify-center">
           <div className="mb-4">
           <h2 className="text-5xl text-black font-semibold mb-4">
   <span
     style={{
       display: 'inline-block',
-      width: '1200px', // Adjust the width as needed
+      width: '800px', // Adjust the width as needed
       overflow: 'hidden',
     }}
   >
