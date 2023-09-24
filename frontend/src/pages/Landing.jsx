@@ -35,10 +35,31 @@ function Landing() {
           </div>
         </div>
       </div>
-      <div>
-        <Description />
-        <Sponsors />
-      </div>
+
+      <div className="container mx-auto p-1">
+  <div className="grid grid-cols-3">
+    {/* Left section with significant vertical translation */}
+    <div className="col-span-1 relative" style={{ top: '-250px' }}>
+      <Description />
+    </div>
+
+    {/* Middle section */}
+    <div className="col-span-1">
+      <Description />
+    </div>
+
+    {/* Right section with flipping across y-axis */}
+    <div className="col-span-1 relative" style={{ transform: 'scaleX(-1)', top: '-200px' }}>
+      <Description />
+    </div>
+  </div>
+
+  <div className="mt-8">
+    <Sponsors />
+  </div>
+</div>
+
+
     </>
    
   )
