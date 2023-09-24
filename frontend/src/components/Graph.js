@@ -35,7 +35,26 @@ const GraphComponent = ({graphData}) => {
             text: '',
             },
         },
-    };    
+        plugins: {
+            // background: {
+            //   color: 'rgba(0, 0, 0, 0)', // Change this to the desired background color
+            // },
+            customCanvasBackgroundColor: {
+                color: 'lightGreen',
+            }
+        },
+    };
+    
+    const config = {
+        options: {
+          plugins: {
+            customCanvasBackgroundColor: {
+              color: 'lightGreen',
+            }
+          }
+        },
+        
+    };
 
     const labels = ['', '', '', '', '', '', ''];
     const data = {
@@ -53,7 +72,7 @@ const GraphComponent = ({graphData}) => {
     
     return (
         <div>
-            <Line options={options} data={data} />
+            <Line options={options} config={config} data={data} />
         </div>
     );
 }
