@@ -21,43 +21,38 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
   
   return (
     <>
-      
       <div className="p-4 flex justify-between items-center">
-  {/* Left Side */}
-  <ul className="flex space-x-4 list-none">
-    <li>
-      <a href="/" className="text-white hover:text-gray-400 border rounded px-3 py-2">LOGO</a>
-    </li>
-    <li>
-      <a href="/buy" className="text-white hover:text-gray-400 border rounded px-3 py-2">Buy</a>
-    </li> 
-    <li>
-      <a href="/sell" className="text-white hover:text-gray-400 border rounded px-3 py-2">Sell</a>
-    </li>
-  </ul>
+        {/* Left Side */}
+        <ul className="flex space-x-4 list-none">
+          <li>
+            <a href="/" className="mb-5 text-white text-xl font-bold hover:text-gray-400 px-4 py-2">SOHO</a>
+          </li>
+          <li>
+            <a href="/dashboard" className="text-white hover:text-gray-400 border rounded px-3 py-2">Dashboard</a>
+          </li>
+          <li>
+            <a href="/graph" className="text-white hover:text-gray-400 border rounded px-3 py-2">Analytics</a>
+          </li> 
+        </ul>
 
-  {/* Right Side */}
-  <ul className="flex items-center space-x-2 list-none">
-    {/* Move Wallet Connect here */}
-    <li>
-      <div className="flex items-center space-x-2">
-        <WagmiConfig config={wagmiConfig}>
-          <Web3Button />
-        </WagmiConfig>
-        <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+        {/* Right Side */}
+        <ul className="flex items-center space-x-2 list-none">
+          {/* Move Wallet Connect here */}
+          <li>
+            <div className="flex items-center space-x-2">
+              <WagmiConfig config={wagmiConfig}>
+                <Web3Button />
+              </WagmiConfig>
+              <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+            </div>
+          </li>
+          
+          {/* Profile Image */}
+          <li>
+            <Profile apiUrl={apiUrl} />
+          </li>
+        </ul>
       </div>
-    </li>
-    
-    {/* Profile Image */}
-    <li>
-      <Profile apiUrl={apiUrl} />
-    </li>
-  </ul>
-</div>
-
-
-
-
     </>
     
   )
