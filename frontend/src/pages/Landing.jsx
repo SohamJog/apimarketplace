@@ -14,12 +14,11 @@ function Landing() {
     <>
       <div className="flex h-screen">
         {/* Left Side: Text and Buttons (2/3) */}
-        <div className="w-2/3 p-4 flex flex-col items-center justify-center">
+        <div className="w-2/3 p-4 ml-16 flex flex-col items-center justify-center">
           <div className="mb-4">
-            <h2 className="text-5xl text-black font-semibold mb-4" style={pixelFontStyle}>Every API in One<br />MarketPlace</h2>
+            <h2 className="text-5xl text-black font-semibold mb-4" style={pixelFontStyle}>Enabling Crypto Payments for <br/> Web2 APIs</h2>
             <p className="text-md text-black" style={pixelFontStyle}>Redefining the modern API experience.</p>
             <div className="mb-4">
-              <p className="text-md text-black" style={pixelFontStyle}>Enabling Crypto Payments for Web2 APIs.</p>
               <div className="mt-10">
                 <a href="/buy" className=" text-black text-2xl hover:text-black-400 border border-black rounded px-4 py-2 mr-4" style={pixelFontStyle}>Buy</a>
                 <a href="/sell" className="text-black text-2xl hover:text-black-400 border border-black rounded px-4 py-2" style={pixelFontStyle}>Sell</a>
