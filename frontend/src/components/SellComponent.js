@@ -1,45 +1,66 @@
 // SellComponent.js
+// SellComponent.js
 
-import React from 'react';
+import React, { useState } from 'react';
+import { ethers } from 'ethers'; // Import ethers
+import {SC_ADDRESS} from '../constants';
+import APIKeyEscrow from '../contracts/APIKeyEscrow.json';
+import { useAccount, useContractRead, useContractWrite } from 'wagmi';
+import  useEthersWalletClient  from "../hooks/useEthersWalletClient";
 
-class SellComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      duration: '',
-      price: '',
-      apiName: '',
-      // Add more fields as needed
-    };
-  }
+import { toast } from 'react-toastify';
 
-  handleInputChange = (event) => {
+
+function SellComponent() {
+  const [duration, setDuration] = useState('');
+  const [price, setPrice] = useState('');
+  const [apiName, setApiName] = useState('');
+
+  const { address, isConnecting, isDisconnected } = useAccount();
+
+  const { data, isError, isLoading } = useContractRead({
+    address: SC_ADDRESS,
+    abi:  APIKeyEscrow.abi,
+    functionName: 'getOrderNextNumber',
+  })
+    
+  const { dataSell, isLoadingSell, isSuccess, write } = useContractWrite({
+    address: SC_ADDRESS,
+    abi: APIKeyEscrow.abi,
+    functionName: 'sellMessage',
+  })
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+
+    switch (name) {
+      case 'duration':
+        setDuration(value);
+        break;
+      case 'price':
+        setPrice(value);
+        break;
+      case 'apiName':
+        setApiName(value);
+        break;
+      default:
+        break;
+    }
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(data.toString())
+    write({args: [price, duration]})
 
-    // You can perform actions with the form data here
-    const formData = {
-      duration: this.state.duration,
-      price: this.state.price,
-      apiName: this.state.apiName,
-      // Add more fields as needed
-    };
-
-    // You can send the formData to your server or perform other actions
-    console.log(formData);
+   
   };
 
-  render() {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/3">
-          <h1 className="text-2xl font-bold mb-4">Sell an Item</h1>
-          <form onSubmit={this.handleSubmit}>
-            <div className="mb-4">
+  return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/3">
+        <h1 className="text-2xl font-bold mb-4">Sell an Item</h1>
+        <form onSubmit={handleSubmit}>
+        <div className="mb-4">
               <label
                 htmlFor="duration"
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -50,8 +71,8 @@ class SellComponent extends React.Component {
                 type="number"
                 id="duration"
                 name="duration"
-                value={this.state.duration}
-                onChange={this.handleInputChange}
+                value={duration}
+                onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
@@ -66,8 +87,8 @@ class SellComponent extends React.Component {
                 type="number"
                 id="price"
                 name="price"
-                value={this.state.price}
-                onChange={this.handleInputChange}
+                value={price}
+                onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
@@ -82,8 +103,8 @@ class SellComponent extends React.Component {
                 type="text"
                 id="apiName"
                 name="apiName"
-                value={this.state.apiName}
-                onChange={this.handleInputChange}
+                value={apiName}
+                onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
@@ -96,11 +117,12 @@ class SellComponent extends React.Component {
                 Submit
               </button>
             </div>
-          </form>
-        </div>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default SellComponent;
+
+
