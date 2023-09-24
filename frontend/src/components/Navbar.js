@@ -18,7 +18,9 @@ import Profile from './Profile'
 // const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 
 function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
-  
+  const pixelFontStyle = {
+    fontFamily: 'Public Pixel', // Use the font-family name defined in your CSS
+  };
   return (
     <>
       
@@ -29,10 +31,10 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
       <a href="/" className="text-white hover:text-gray-400 border rounded px-3 py-2">LOGO</a>
     </li>
     <li>
-      <a href="/buy" className="text-white hover:text-gray-400 border rounded px-3 py-2">Buy</a>
+      <a href="/buy" className="text-white hover:text-gray-400 border rounded px-3 py-2" style={pixelFontStyle}>Buy</a>
     </li> 
     <li>
-      <a href="/sell" className="text-white hover:text-gray-400 border rounded px-3 py-2">Sell</a>
+      <a href="/sell" className="text-white hover:text-gray-400 border rounded px-3 py-2" style={pixelFontStyle}>Sell</a>
     </li>
   </ul>
 
