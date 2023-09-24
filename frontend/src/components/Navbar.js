@@ -49,9 +49,9 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
     </li>
     
     {/* Profile Image */}
-    <li>
+    {/* <li>
       <Profile apiUrl={apiUrl} />
-    </li>
+    </li> */}
   </ul>
 </div>
 

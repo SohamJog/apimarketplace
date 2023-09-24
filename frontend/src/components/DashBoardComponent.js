@@ -51,7 +51,7 @@ const DashboardComponent = ({numberOfOrders}) => {
         duration: Number(data[i].result.duration),
         cost: Number(data[i].result.price),
         publicAddress: data[i].result.seller,
-        costPerHour: Number(data[i].result.price)/(Number(data[i].result.duration) * 24),
+        costPerHour: Number(data[i].result.price)/(Number(data[i].result.duration) ),
         isSeller: 0,
         image: 'https://api.cloudnouns.com/v1/pfp',
         isUpForSale: true,
@@ -72,7 +72,7 @@ const DashboardComponent = ({numberOfOrders}) => {
         duration: Number(data[i].result.duration),
         cost: Number(data[i].result.price),
         publicAddress: data[i].result.seller,
-        costPerHour: Number(data[i].result.price)/(Number(data[i].result.duration) * 24),
+        costPerHour: Number(data[i].result.price)/(Number(data[i].result.duration) ),
         isSeller: 0,
         image: 'https://api.cloudnouns.com/v1/pfp',
         isUpForSale: true,
@@ -129,11 +129,18 @@ const DashboardComponent = ({numberOfOrders}) => {
   if (isDisconnected || isConnecting) return (<div><WalletNotConnected/></div>)
 
   return (
-    <div>
-      <h2 className="text-xl mb-4">Dashboard</h2>
+<div>
+  <div className="flex flex-col justify-center items-center">
+    <h1 className="text-6xl font-bold mt-24 mb-16">Dashboard</h1>
+    <p className="text-center text-2xl mb-10">Here's a list of all your current transactions!</p>
+  </div>
 
-      <h3 className="text-lg mb-2">Items being sold:</h3>
-      {apiDataSold.map((item, index) => (
+  <div className="mt-8">
+    <h3 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 pb-2">Items being sold:</h3>
+    {apiDataSold.length === 0 ? (
+      <p className="text-xl text-gray-600 italic">Looks like you have no sell transactions currently running.</p>
+    ) : (
+      apiDataSold.map((item, index) => (
         <Order 
           id = {item.id}
           key={index}
@@ -145,10 +152,16 @@ const DashboardComponent = ({numberOfOrders}) => {
           isSeller={item.isSeller}
           image={item.image}
         />
-      ))}
-      
-      <h3 className="text-lg mb-2 mt-6">Items being bought:</h3>
-      {apiDataBought.map((item, index) => (
+      ))
+    )}
+  </div>
+
+  <div className="mt-12">
+    <h3 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 pb-2">Items being bought:</h3>
+    {apiDataBought.length === 0 ? (
+      <p className="text-xl text-gray-600 italic">Looks like you have no buy transactions currently running.</p>
+    ) : (
+      apiDataBought.map((item, index) => (
         <Order 
           id = {item.id}
           key={index}
@@ -160,8 +173,12 @@ const DashboardComponent = ({numberOfOrders}) => {
           isSeller={item.isSeller}
           image={item.image}
         />
-      ))}
-    </div>
+      ))
+    )}
+  </div>
+</div>
+
+
   );
 }
 

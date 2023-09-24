@@ -40,33 +40,40 @@ const Order = ({id, name, duration, cost, publicAddress, costPerHour, isSeller, 
 
   return (
     <div className="border p-4 rounded-lg shadow-md bg-gradient-to-r from-blue-200 to-blue-300">
-      <div className="flex justify-between items-center mb-4">
-        {image && <img src={image} alt="Profile Image" className="rounded-full w-20 h-20" />}
-        <div className="w-1/2 text-blue-800">
-          <p className="font-bold">{name}</p>
-          <p><span className="font-bold">Public Address:</span> {formatAddress(publicAddress)}</p>
-
+    <div className="flex justify-between items-start mb-4">
+        {image && <img src={image} alt="Profile Image" className="rounded-full w-20 h-20 mr-4" />}
+        <div className="flex-1 text-blue-800">
+            <p className="font-bold text-xl">{name}</p>
+            <p className="mt-2"><span className="font-bold">Public Address:</span> {formatAddress(publicAddress)}</p>
         </div>
-        {!isUpForSale && <button onClick={handleCancel} className="bg-red-400 text-white py-2 px-4 rounded">
-          CANCEL Transaction
-        </button>}
-        {isUpForSale && <button onClick={handleBuy} className="bg-green-400 text-white py-2 px-4 rounded">
-          BUY
-        </button>}
-      </div>
-      <div className="flex justify-between items-start text-blue-800">
-        
-        <div>
-          <p><span className="font-bold">Duration:</span> {duration}</p>
-          {!isUpForSale && <p><span className="font-bold">Cost:</span> {isSeller ? `${cost} collected` : `${cost} spent`}</p>}
+        <div className="flex flex-col items-end">
+            <div className="text-right">
+                <p className="font-bold text-black text-6xl">{parseFloat(costPerHour.toFixed(4))}</p>
+                <p className="text-sm text-gray-600 mt-1">WEI/day</p>
+            </div>
+            <div className="mt-4">
+                {isUpForSale ? (
+                    <button onClick={handleBuy} className="bg-green-400 text-white py-2 px-4 rounded">
+                        BUY
+                    </button>
+                ) : (
+                    <button onClick={handleCancel} className="bg-red-400 text-white py-2 px-4 rounded">
+                        CANCEL Transaction
+                    </button>
+                )}
+            </div>
         </div>
-        <div className="text-right">
-          <p className="font-bold">{costPerHour} ETH/hour</p>
-        </div>
-      </div>
-      {/* Display XmtpHome component if not up for sale */}
-      {!isUpForSale && <XmtpHome PEER_ADDRESS={publicAddress} />}
     </div>
+    <div className="flex justify-between items-start text-blue-800 mt-2">
+        <div>
+            <p><span className="font-bold">Duration:</span> {duration}</p>
+            {!isUpForSale && <p><span className="font-bold">Cost:</span> {isSeller ? `${cost} collected` : `${cost} spent`}</p>}
+        </div>
+    </div>
+    {/* Display XmtpHome component if not up for sale */}
+    {!isUpForSale && <XmtpHome PEER_ADDRESS={publicAddress} />}
+</div>
+
   );
 }
 
