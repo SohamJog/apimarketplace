@@ -2,12 +2,12 @@ import React from 'react'
 
 function Sponsors() {
   const pixelFontStyle = {
-    fontFamily: 'PixelFont', // Use the font-family name defined in your CSS
+    fontFamily: 'Public Pixel', // Use the font-family name defined in your CSS
   };
   return (
     <>
       <div className="mt-8">
-  <h3 className="text-4xl font-semibold mb-6 text-center" style={pixelFontStyle}>Our Integration</h3> {/* Increased font size and margin */}
+  <h3 className="text-3xl font-semibold mb-6 text-center" style={pixelFontStyle}>Our Integrations</h3> {/* Increased font size and margin */}
   <div className="flex items-center justify-center space-x-8"> {/* Increased space-x */}
     {/* Sponsor 1 */}
     <div className="p-6 rounded-full shadow-md bg-transparent overflow-hidden"> {/* Increased padding and rounded-full */}

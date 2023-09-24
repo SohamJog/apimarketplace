@@ -8,7 +8,7 @@ const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 
 function Landing() {
   const pixelFontStyle = {
-    fontFamily: 'PixelFont', // Use the font-family name defined in your CSS
+    fontFamily: 'Public Pixel', // Use the font-family name defined in your CSS
   };
   return (
     <>
@@ -16,7 +16,7 @@ function Landing() {
         {/* Left Side: Text and Buttons (2/3) */}
         <div className="w-2/3 p-4 flex flex-col items-center justify-center">
           <div className="mb-4">
-            <h2 className="text-8xl font-semibold mb-4" style={pixelFontStyle}>Every API in One<br />MarketPlace</h2>
+            <h2 className="text-5xl font-semibold mb-4" style={pixelFontStyle}>Every API in One<br />MarketPlace</h2>
             <p className="text-xl" style={pixelFontStyle}>Redefining the modern web experience.</p>
             <div className="mb-4">
               <p className="text-xl" style={pixelFontStyle}>Redefining the modern web experience.</p>
