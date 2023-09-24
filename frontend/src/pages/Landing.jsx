@@ -16,10 +16,10 @@ function Landing() {
         {/* Left Side: Text and Buttons (2/3) */}
         <div className="w-2/3 p-4 flex flex-col items-center justify-center">
           <div className="mb-4">
-            <h2 className="text-5xl font-semibold mb-4" style={pixelFontStyle}>Every API in One<br />MarketPlace</h2>
-            <p className="text-xl" style={pixelFontStyle}>Redefining the modern web experience.</p>
+            <h2 className="text-5xl text-black font-semibold mb-4" style={pixelFontStyle}>Every API in One<br />MarketPlace</h2>
+            <p className="text-xl text-black" style={pixelFontStyle}>Redefining the modern API experience.</p>
             <div className="mb-4">
-              <p className="text-xl" style={pixelFontStyle}>Redefining the modern web experience.</p>
+              <p className="text-xl text-black" style={pixelFontStyle}>Enabling Crypto Payments for Web2 APIs.</p>
               <div className="mt-4">
                 <a href="/buy" className="text-black hover:text-black-400 border rounded px-4 py-2 mr-4" style={pixelFontStyle}>Buy</a>
                 <a href="/sell" className="text-black hover:text-black-400 border rounded px-4 py-2" style={pixelFontStyle}>Sell</a>
