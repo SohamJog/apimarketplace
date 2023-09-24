@@ -9,7 +9,7 @@
 
 /* Set the background image */
 body {
-    background-image: url('/Users/eliezerdubizh/Desktop/apimarketplace/frontend/public/Assets/background.png'); /* Adjust the path to your image */
+    background-image: url('/public/Assets/background.png'); /* Adjust the path to your image */
     background-size: cover; /* Adjust the background size as needed */
     background-repeat: no-repeat;
     background-attachment: fixed;
