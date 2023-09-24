@@ -76,11 +76,11 @@ const GraphPage = () => {
 
   return (
     <div className='m-6'>
-      <h2 className="text-5xl font-bold text-center mb-4">Analytics</h2>
+      <h2 className="text-5xl text-black font-bold text-center mb-4">Analytics</h2>
 
       <GraphComponent graphData={graphArray} />
-      <p className='text-center text-2xl font-semibold'>See market trends of the hourly price of APIs</p>
-      <p className='text-center mt-5'>Analytics from a subgraph from TheGraph </p>
+      <p className='text-center text-black text-2xl font-semibold'>See market trends of the hourly price of APIs</p>
+      <p className='text-center text-black mt-5'>Analytics from a subgraph from TheGraph </p>
       
     </div>
   );
