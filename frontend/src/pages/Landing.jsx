@@ -73,10 +73,10 @@ function Landing() {
             <Description />
           </div>
 
-          {/* Right column with flip effect */}
+          {/* Right column with flip effect
     <div className="col-span-1 relative transform scale-x-[-1]">
       <Description />
-    </div>
+    </div> */}
   </div>
 
         <div className="mt-60">
