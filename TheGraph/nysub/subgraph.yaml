@@ -1,0 +1,30 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: APIKeyEscrow.sol
+    network: scroll-sepolia
+    source:
+      address: "0x26cF7F3B9299078706faE762974286CfA870A11e"
+      abi: APIKeyEscrow
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BuyOrderEvent
+        - CancelOrderEvent
+        - SellOrderEvent
+      abis:
+        - name: APIKeyEscrow
+          file: ./abis/APIKeyEscrow.json
+      eventHandlers:
+        - event: BuyOrderEvent(uint256,address,uint256,uint256,uint256)
+          handler: handleBuyOrderEvent
+        - event: CancelOrderEvent(uint256,address,uint256,uint256,uint256)
+          handler: handleCancelOrderEvent
+        - event: SellOrderEvent(uint256,address,uint256,uint256)
+          handler: handleSellOrderEvent
+      file: ./src/api-key-escrow-sol.ts
