@@ -17,10 +17,11 @@ function Buy() {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center">
-      <h1 className="text-5xl font-bold mt-24 mb-16">Pay for Web2 APIs using crypto</h1>
-      <p className="text-center">You can buy API access at different rates given here. Once you click on buy,  make sure the seller sends you the API key in under an hour through XMTP</p>
-      </div>
+      <div className="flex flex-col justify-center items-center text-black p-8">
+  <h1 className="text-5xl font-bold mt-24 mb-16">Pay for Web2 APIs using crypto</h1>
+  <p className="text-center">You can buy API access at different rates given here. Once you click on buy, make sure the seller sends you the API key in under an hour through XMTP</p>
+</div>
+
 
       <BuyComponent
       numberOfOrders={Number(data)}
