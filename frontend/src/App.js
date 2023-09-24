@@ -16,6 +16,7 @@ import { EthereumWalletConnectors } from "@dynamic-labs/ethereum-all";
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 const chains = [scrollSepolia] // -----CHANGE-----
 const projectId = '02d2c608e74734322e276800f3e43483' // -----HIDE-----
 
@@ -29,6 +30,8 @@ const ethereumClient = new EthereumClient(wagmiConfig, chains)
 const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 
 function App() {
+
+
   return (
     <BrowserRouter>
       <div className="bg-gradient-to-r from-gray-900 to-black min-h-screen text-white">
@@ -57,7 +60,9 @@ function App() {
 
           <Route path = "/dashboard" element={             
           <WagmiConfig config={wagmiConfig}>
-            <Dashboard/>
+            <Dashboard
+            
+            />
           </WagmiConfig>}/>
 
 
