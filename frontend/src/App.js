@@ -9,12 +9,14 @@ import Dashboard from "./pages/Dashboard";
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Button, Web3Modal } from '@web3modal/react'
-import { arbitrum, mainnet, polygon } from 'wagmi/chains'
+import { arbitrum, mainnet, polygon, scrollSepolia, scrollTestnet } from 'wagmi/chains'
 import XmtpHome from "./components/XmtpHome";
 import { DynamicWidget, useDynamicContext, DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum-all";
+import 'react-toastify/dist/ReactToastify.css';
 
-const chains = [arbitrum, mainnet, polygon] // -----CHANGE-----
+
+const chains = [scrollSepolia] // -----CHANGE-----
 const projectId = '02d2c608e74734322e276800f3e43483' // -----HIDE-----
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
