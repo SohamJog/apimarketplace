@@ -11,7 +11,7 @@ function Chat({ client, messageHistory, conversation }) {
     return (
       <button 
         onClick={() => setViewMode(true)} 
-        className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+        className="bg-blue-500 text-black p-2 rounded hover:bg-blue-600"
       >
         Open Chat
       </button>
@@ -42,7 +42,7 @@ function Chat({ client, messageHistory, conversation }) {
     );
 
     return (
-      <ul className="messageList bg-white shadow-xl rounded-lg p-6 w-80  border border-gray-200 z-50">
+      <ul className="messageList bg-black shadow-xl rounded-lg p-6 w-80  border border-black-200 z-50">
         {messages.map((message, index) => (
           <li
             key={message.id}
@@ -74,7 +74,7 @@ function Chat({ client, messageHistory, conversation }) {
   };
   return (
     <div className="bg-gray-100 rounded-lg p-4 shadow-2xl w-96">
-    <div className="bg-white p-4 rounded-lg shadow-md overflow-y-auto max-h-60">
+    <div className="bg-black p-4 rounded-lg shadow-md overflow-y-auto max-h-60">
         <MessageList messages={messageHistory} />
     </div>
     <div className="mt-4 flex items-center">
