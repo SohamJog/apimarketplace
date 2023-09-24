@@ -12,12 +12,12 @@ function Landing() {
       <div className="flex h-screen">
         {/* Left Side: Text and Buttons (2/3) */}
         <div className="w-2/3 p-4 flex flex-col items-center justify-center">
-          <div className="text-center mb-4">
+          <div className="mb-4">
             <h2 className="text-8xl font-semibold mb-4">Every API in One<br />MarketPlace</h2>
             <p className="text-xl">Redefining the modern web experience.</p>
             <div className="mb-4">
               <p className="text-xl">Redefining the modern web experience.</p>
-              <div className="text-center mt-4">
+              <div className="mt-4">
                 <a href="/buy" className="text-white hover:text-gray-400 border rounded px-4 py-2 mr-4">Buy</a>
                 <a href="/sell" className="text-white hover:text-gray-400 border rounded px-4 py-2">Sell</a>
               </div>
