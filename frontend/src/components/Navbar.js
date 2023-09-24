@@ -23,32 +23,39 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
     <>
       
       <div className="p-4 flex justify-between items-center">
-      {/* Left Side */}
-      <ul className="flex space-x-4 list-none">
-        <li>
-          <a href="/sell" className="text-white hover:text-gray-400 border rounded px-3 py-2">Sell</a>
-        </li>
-        <li>
-          <a href="/buy" className="text-white hover:text-gray-400 border rounded px-3 py-2">Buy</a>
-        </li>
-      </ul>
+  {/* Left Side */}
+  <ul className="flex space-x-4 list-none">
+    <li>
+      <a href="/" className="text-white hover:text-gray-400 border rounded px-3 py-2">LOGO</a>
+    </li>
+    <li>
+      <a href="/buy" className="text-white hover:text-gray-400 border rounded px-3 py-2">Buy</a>
+    </li> 
+    <li>
+      <a href="/sell" className="text-white hover:text-gray-400 border rounded px-3 py-2">Sell</a>
+    </li>
+  </ul>
 
-      {/* Center (Wallet Connect) */}
-      <div className="flex items-center justify-center">
+  {/* Right Side */}
+  <ul className="flex items-center space-x-2 list-none">
+    {/* Move Wallet Connect here */}
+    <li>
+      <div className="flex items-center space-x-2">
         <WagmiConfig config={wagmiConfig}>
           <Web3Button />
         </WagmiConfig>
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       </div>
+    </li>
+    
+    {/* Profile Image */}
+    <li>
+      <Profile apiUrl={apiUrl} />
+    </li>
+  </ul>
+</div>
 
-      {/* Right Side */}
-      <ul className="flex items-center space-x-2 list-none">
-        <li>
-          <Profile 
-          apiUrl={apiUrl}/>
-        </li>
-      </ul>
-    </div>
+
 
 
     </>
