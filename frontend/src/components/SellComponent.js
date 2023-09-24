@@ -6,9 +6,7 @@ import { ethers } from 'ethers'; // Import ethers
 import {SC_ADDRESS} from '../constants';
 import APIKeyEscrow from '../contracts/APIKeyEscrow.json';
 import { useAccount, useContractRead, useContractWrite } from 'wagmi';
-import  useEthersWalletClient  from "../hooks/useEthersWalletClient";
 
-import { toast } from 'react-toastify';
 
 
 function SellComponent() {
@@ -54,11 +52,13 @@ function SellComponent() {
 
    
   };
-
+  const pixelFontStyle = {
+    fontFamily: 'PixelFont', // Use the font-family name defined in your CSS
+  };
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/3">
-        <h1 className="text-2xl font-bold mb-4">Sell an Item</h1>
+        <h1 className="text-2xl font-bold mb-4" style={pixelFontStyle}>Sell an Item</h1>
         <form onSubmit={handleSubmit}>
         <div className="mb-4">
               <label

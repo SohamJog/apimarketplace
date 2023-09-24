@@ -18,7 +18,9 @@ import Profile from './Profile'
 // const apiUrl = "https://api.cloudnouns.com/v1/pfp";
 
 function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
-  
+  const pixelFontStyle = {
+    fontFamily: 'Public Pixel', // Use the font-family name defined in your CSS
+  };
   return (
     <>
       <div className="p-4 flex justify-between items-center">
@@ -28,10 +30,10 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
             <a href="/" className="mb-5 text-white text-xl font-bold hover:text-gray-400 px-4 py-2">SOHO</a>
           </li>
           <li>
-            <a href="/dashboard" className="text-white hover:text-gray-400 border rounded px-3 py-2">Dashboard</a>
+            <a href="/dashboard" className="text-white hover:text-gray-400 border rounded px-3 py-2" style={pixelFontStyle}>Dashboard</a>
           </li>
           <li>
-            <a href="/graph" className="text-white hover:text-gray-400 border rounded px-3 py-2">Analytics</a>
+            <a href="/graph" className="text-white hover:text-gray-400 border rounded px-3 py-2" style={pixelFontStyle}>Analytics</a>
           </li> 
         </ul>
 
@@ -46,11 +48,11 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
               <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
             </div>
           </li>
-          
+            
           {/* Profile Image */}
-          <li>
+          {/* <li>
             <Profile apiUrl={apiUrl} />
-          </li>
+          </li> */}
         </ul>
       </div>
     </>
