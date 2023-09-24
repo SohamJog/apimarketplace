@@ -6,9 +6,7 @@ import { ethers } from 'ethers'; // Import ethers
 import {SC_ADDRESS} from '../constants';
 import APIKeyEscrow from '../contracts/APIKeyEscrow.json';
 import { useAccount, useContractRead, useContractWrite } from 'wagmi';
-import  useEthersWalletClient  from "../hooks/useEthersWalletClient";
 
-import { toast } from 'react-toastify';
 
 
 function SellComponent() {

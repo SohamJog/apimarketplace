@@ -14,11 +14,8 @@ function Sell() {
     }
   }, [address, isDisconnected, isConnecting]); // React will re-run the effect if address, isDisconnected, or isConnecting change.
 
-
-
  if (isDisconnected || isConnecting) return (<div><WalletNotConnected/></div>)
 
- 
 
   return (
 
