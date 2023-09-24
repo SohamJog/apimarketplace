@@ -20,8 +20,21 @@ function Landing() {
             <p className="text-md text-black" style={pixelFontStyle}>Redefining the modern API experience.</p>
             <div className="mb-4">
               <div className="mt-10">
-                <a href="/buy" className=" text-black text-2xl hover:text-black-400 border border-black rounded px-4 py-2 mr-4" style={pixelFontStyle}>Buy</a>
-                <a href="/sell" className="text-black text-2xl hover:text-black-400 border border-black rounded px-4 py-2" style={pixelFontStyle}>Sell</a>
+              <a
+  href="/buy"
+  className="inline-block bg-black border border-black text-white text-2xl px-4 py-2 mr-4 rounded-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
+  style={{ ...pixelFontStyle, marginLeft: 'auto' }}
+>
+  BUY
+</a>
+<a
+  href="/sell"
+  className="inline-block bg-black border border-black text-white text-2xl px-4 py-2 rounded-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
+  style={{ ...pixelFontStyle }}
+>
+  SELL
+</a>
+
               </div>
             </div>
           </div>
@@ -36,27 +49,22 @@ function Landing() {
       </div>
 
       <div className="container mx-auto p-1">
-  <div className="grid grid-cols-3">
-    {/* Left section with significant vertical translation */}
-    <div className="col-span-1 relative" style={{ top: '-250px' }}>
-      <Description />
-    </div>
+        <div className="grid grid-cols-2 gap-8">
+          {/* Left column with a negative top margin to push it up */}
+          <div className="col-span-1 -mt-20">
+            <Description />
+          </div>
 
-    {/* Middle section */}
-    <div className="col-span-1">
-      <Description />
-    </div>
-
-    {/* Right section with flipping across y-axis */}
-    <div className="col-span-1 relative" style={{ transform: 'scaleX(-1)', top: '-200px' }}>
+          {/* Right column with flip effect */}
+    <div className="col-span-1 relative transform scale-x-[-1]">
       <Description />
     </div>
   </div>
 
-  <div className="mt-8">
-    <Sponsors />
-  </div>
-</div>
+        <div className="mt-60">
+          <Sponsors />
+        </div>
+      </div>
 
 
     </>
