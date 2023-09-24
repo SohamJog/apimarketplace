@@ -48,7 +48,7 @@ function Navbar({wagmiConfig, ethereumClient, projectId, apiUrl}) {
               <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
             </div>
           </li>
-            
+
           {/* Profile Image */}
           {/* <li>
             <Profile apiUrl={apiUrl} />
