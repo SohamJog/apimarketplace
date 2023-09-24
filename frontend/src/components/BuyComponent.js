@@ -48,10 +48,13 @@ const availableAPIs = [
 ];
 
 function BuyComponent() {
+  const pixelFontStyle = {
+    fontFamily: 'Public Pixel', // Use the font-family name defined in your CSS
+  };
   return (
     <div className="flex justify-center items-center min-h-screen">
       {/* Centered and blended-in menu tab */}
-      <div className="bg-opacity-70 p-4 w-full h-full">
+      <div className="bg-opacity-70 p-4 w-full h-full" >
         <h1 className="text-2xl font-bold mb-4">Available APIs</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {availableAPIs.map((item, index) => (
