@@ -2,6 +2,8 @@ pragma solidity ^0.8.0;
 
 //testing still needed for all functions and events!!!!!
 
+import "hardhat/console.sol";
+
 contract APIKeyEscrow {
 
     uint public orderNumber = 0; //stores the id/number for the next order
@@ -118,46 +120,44 @@ contract APIKeyEscrow {
         require(orderMap[_orderNumber].buyer != address(0), "Order never bought.");
 
         
-        
-        uint256 percentageSellerTime;
         uint256 ethToSeller;
         uint256 ethToBuyer;
         if (block.timestamp < orderMap[_orderNumber].startTime) { // scenario if buyer withdraws before order starts because they haven't received an API key
-            percentageSellerTime = 0;
             ethToBuyer = orderMap[_orderNumber].price;
             ethToSeller = 0;
         } else  {
+            
             uint256 durationUsed = block.timestamp - orderMap[_orderNumber].startTime;
             if (durationUsed > orderMap[_orderNumber].duration) { //scenario if seller cancels order after period/order has ended
-                percentageSellerTime = 1;
+
                 ethToSeller = orderMap[_orderNumber].price;
                 ethToBuyer = 0;
-            } else { //scenario if buyer or seller withdraws order before period ended
+            } else { //scenario if buyer or seller withdraws order before period ended\
                 
-                //these calculations should preserve decimals until storage/memory, at which point it is truncated
-                //we have to do everything in one line 
-                //https://docs.soliditylang.org/en/develop/types.html#rational-and-integer-literals
-                // "Division on integer literals used to truncate in Solidity prior to version 0.4.0, but it now converts into a rational number, i.e. 5 / 2 is not equal to 2, but to 2.5."
-                ethToSeller = orderMap[_orderNumber].price * (durationUsed / (orderMap[_orderNumber].duration));
-                ethToBuyer = orderMap[_orderNumber].price * (1 - (durationUsed / (orderMap[_orderNumber].duration)));
+                //Old Comments:
+                    //these calculations should preserve decimals until storage/memory, at which point it is truncated
+                    //we have to do everything in one line 
+                    //https://docs.soliditylang.org/en/develop/types.html#rational-and-integer-literals
+                    // "Division on integer literals used to truncate in Solidity prior to version 0.4.0, but it now converts into a rational number, i.e. 5 / 2 is not equal to 2, but to 2.5."
+                //You can't do an operation after the calculation though, because solidity can't store
+                //the division in memory
+                //uint256 sellerPercentage = ((durationUsed) / orderMap[_orderNumber].duration))*100;
+                //sellerPercentage will be 0, because (durationUsed) / orderMap[_orderNumber].duration) still has to
+                //be stored in memory for next calculation (as far as I understand), and be truncated as a result
 
-                //New method (instead of ufixed)
-                //all decimals produced by the above equations should be truncated, so no worry about the problem below...
+                uint256 sellerPercentage = (durationUsed*100) / orderMap[_orderNumber].duration;
+                uint256 buyerPercentage = 100 - (durationUsed*100 / orderMap[_orderNumber].duration);
 
-                    //lets say there is 33% used and 67% unused, the price is 10
-                    //33%*price = 3.333333…. Or 3.33334, if we round down or truncate value to two decimal 
-                    //places
-                    //67%*price = 6.666666… or 6.667%, 
-                    //3.34+6.67 = 10.01 which is greater than 10
-                    //to prevent contract from overspending, we round dconvert uintown and then keep the extra money in 
-                    //the smart contract
+                ethToSeller = (orderMap[_orderNumber].price * sellerPercentage)/100;
+                ethToBuyer = (orderMap[_orderNumber].price * buyerPercentage)/100;
+                
 
             }
         }
 
         
 
-        require(ethToBuyer + ethToSeller == orderMap[_orderNumber].price, "Price didn't add up properly");
+        require(ethToBuyer + ethToSeller == orderMap[_orderNumber].price, "Payouts didn't add up properly");
         require(ethToBuyer + ethToSeller <= address(this).balance, "Contract does not have enough balance");
 
 
