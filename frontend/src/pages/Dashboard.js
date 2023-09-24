@@ -14,7 +14,7 @@ import React from 'react';
 import Order from '../components/Order'; // Assuming the Order component is in the same directory
 import { useAccount } from 'wagmi'
 import WalletNotConnected from '../components/WalletNotConnected'
-
+import ethers from 'ethers'
 
 const Dashboard = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
