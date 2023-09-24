@@ -25,6 +25,10 @@ function Sponsors() {
     <div className="p-6 rounded-full shadow-md bg-transparent overflow-hidden"> {/* Increased padding and rounded-full */}
       <img src="/Assets/Scroll.png" alt="Sponsor 4" className="w-48 h-48 object-contain bg-transparent" /> {/* Increased image size */}
     </div>
+    {/* Sponsor 5 */}
+    <div className="p-6 rounded-full shadow-md bg-transparent overflow-hidden"> {/* Increased padding and rounded-full */}
+      <img src="/Assets/xmtp.png" alt="Sponsor 4" className="w-48 h-48 object-contain bg-transparent" /> {/* Increased image size */}
+    </div>
   </div>
 </div>
 
