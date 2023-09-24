@@ -21,8 +21,8 @@ function Landing() {
             <div className="mb-4">
               <p className="text-xl" style={pixelFontStyle}>Redefining the modern web experience.</p>
               <div className="mt-4">
-                <a href="/buy" className="text-white hover:text-gray-400 border rounded px-4 py-2 mr-4" style={pixelFontStyle}>Buy</a>
-                <a href="/sell" className="text-white hover:text-gray-400 border rounded px-4 py-2" style={pixelFontStyle}>Sell</a>
+                <a href="/buy" className="text-black hover:text-black-400 border rounded px-4 py-2 mr-4" style={pixelFontStyle}>Buy</a>
+                <a href="/sell" className="text-black hover:text-black-400 border rounded px-4 py-2" style={pixelFontStyle}>Sell</a>
               </div>
             </div>
           </div>
